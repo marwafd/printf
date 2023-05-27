@@ -3,14 +3,14 @@
 /*** PRINT CHAR ***/
 
 /**
- * print_char - Prints a character
+ * print_character - Prints a char
  * @types: List a of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: Width
  * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of characters printed
+ * Return: Number of chars printed
  */
 int print_char(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
@@ -22,7 +22,7 @@ int print_char(va_list types, char buffer[],
 /*** PRINT A STRING ***/
 /**
  * print_string - Prints a string
- * @types: List a of arguments
+ * @types: List  of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -33,7 +33,7 @@ int print_char(va_list types, char buffer[],
 int print_string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int length = 0, j;
+	int length = 0, i;
 	char *str = va_arg(types, char *);
 
 	UNUSED(buffer);
@@ -59,13 +59,13 @@ int print_string(va_list types, char buffer[],
 		if (flags & F_MINUS)
 		{
 			write(1, &str[0], length);
-			for (j = width - length; j > 0; j--)
+			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			return (width);
 		}
 		else
 		{
-			for (j = width - length; j > 0; j--)
+			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			write(1, &str[0], length);
 			return (width);
@@ -97,7 +97,7 @@ int print_percent(va_list types, char buffer[],
 	return (write(1, "%%", 1));
 }
 
-/*** PRINT INT ***/
+/*** PRINT INT ****/
 /**
  * print_int - Print int
  * @types: List of arguments
@@ -106,7 +106,7 @@ int print_percent(va_list types, char buffer[],
  * @width: get width.
  * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of characters printed
+ * Return: Number of chars printed
  */
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
@@ -138,7 +138,11 @@ int print_int(va_list types, char buffer[],
 
 	i++;
 
+<<<<<<< HEAD
 	return (write_nmbr(is_negative, i, buffer, flags, width, precision, size));
+=======
+	return (write_numero(is_negative, i, buffer, flags, width, precision, size));
+>>>>>>> 66e51d32fad285e4d455cbd3a61d59aa73ce23aa
 }
 
 /*** PRINT BINARY ***/
@@ -155,7 +159,7 @@ int print_int(va_list types, char buffer[],
 int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	unsigned int x, y, j, s;
+	unsigned int n, m, i, sum;
 	unsigned int a[32];
 	int count;
 
@@ -165,20 +169,20 @@ int print_binary(va_list types, char buffer[],
 	UNUSED(precision);
 	UNUSED(size);
 
-	x = va_arg(types, unsigned int);
-	y = 2147483648; /* (2 ^ 31) */
-	a[0] = x / y;
-	for (j = 1; j < 32; j++)
+	n = va_arg(types, unsigned int);
+	m = 2147483648; /* (2 ^ 31) */
+	a[0] = n / m;
+	for (i = 1; i < 32; i++)
 	{
-		y /= 2;
-		a[j] = (x / y) % 2;
+		m /= 2;
+		a[i] = (n / m) % 2;
 	}
-	for (j = 0, s = 0, count = 0; j < 32; j++)
+	for (i = 0, sum = 0, count = 0; i < 32; i++)
 	{
-		s += a[j];
-		if (s || j == 31)
+		sum += a[i];
+		if (sum || i == 31)
 		{
-			char z = '0' + a[j];
+			char z = '0' + a[i];
 
 			write(1, &z, 1);
 			count++;
@@ -186,4 +190,3 @@ int print_binary(va_list types, char buffer[],
 	}
 	return (count);
 }
-

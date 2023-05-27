@@ -79,9 +79,9 @@ int printpointer(va_list types, char buffer[],
 	int flags, int width, int precision, int size);
 
 /* Funciotns to handle other specifiers */
-int get_flags(const char *format, int *i);
+int flags(const char *format, int *i);
 int get_width(const char *format, int *i, va_list list);
-int get_precision(const char *format, int *i, va_list list);
+int precision(const char *format, int *i, va_list list);
 int get_size(const char *format, int *i);
 
 /*Function to print string in reverse*/
@@ -108,7 +108,7 @@ char buffer[],
 
 /****************** UTILS ******************/
 int is_printable(char);
-int append_hexa_code(char, char[], int);
+int append_hexa(char, char[], int);
 int is_digit(char);
 
 long int convert_size_number(long int num, int size);

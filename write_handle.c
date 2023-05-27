@@ -72,7 +72,7 @@ int write_nmbr(int is_negative, int ind, char buffer[], int flags, int width, in
 	else if (flags & F_SPACE)
 		extra_ch = ' ';
 
-	return (write_num(ind, buffer, flags, width, precision,
+	return (write_numero(ind, buffer, flags, width, precision,
 		length, padd, extra_ch));
 }
 

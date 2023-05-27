@@ -3,14 +3,14 @@
 /*** PRINT CHAR ***/
 
 /**
- * print_char - Prints a character
+ * print_character - Prints a char
  * @types: List a of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: Width
  * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of characters printed
+ * Return: Number of chars printed
  */
 int print_char(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
@@ -22,7 +22,7 @@ int print_char(va_list types, char buffer[],
 /*** PRINT A STRING ***/
 /**
  * print_string - Prints a string
- * @types: List a of arguments
+ * @types: List  of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -97,7 +97,7 @@ int print_percent(va_list types, char buffer[],
 	return (write(1, "%%", 1));
 }
 
-/*** PRINT INT ***/
+/*** PRINT INT ****/
 /**
  * print_int - Print int
  * @types: List of arguments
@@ -106,7 +106,7 @@ int print_percent(va_list types, char buffer[],
  * @width: get width.
  * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of characters printed
+ * Return: Number of chars printed
  */
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
@@ -138,7 +138,7 @@ int print_int(va_list types, char buffer[],
 
 	i++;
 
-	return (write_numero(is_negative, i, buffer, flags, width, precision, size));
+	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
 /*** PRINT BINARY ***/
@@ -155,7 +155,7 @@ int print_int(va_list types, char buffer[],
 int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	unsigned int x, y, i, s;
+	unsigned int n, m, i, sum;
 	unsigned int a[32];
 	int count;
 
@@ -165,18 +165,18 @@ int print_binary(va_list types, char buffer[],
 	UNUSED(precision);
 	UNUSED(size);
 
-	x = va_arg(types, unsigned int);
-	y = 2147483648; /* (2 ^ 31) */
-	a[0] = x / y;
+	n = va_arg(types, unsigned int);
+	m = 2147483648; /* (2 ^ 31) */
+	a[0] = n / m;
 	for (i = 1; i < 32; i++)
 	{
-		y /= 2;
-		a[i] = (x / y) % 2;
+		m /= 2;
+		a[i] = (n / m) % 2;
 	}
-	for (i = 0, s = 0, count = 0; i < 32; i++)
+	for (i = 0, sum = 0, count = 0; i < 32; i++)
 	{
-		s += a[i];
-		if (s || i == 31)
+		sum += a[i];
+		if (sum || i == 31)
 		{
 			char z = '0' + a[i];
 
